@@ -4,13 +4,15 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Username</th>
-                    <th scope="col">Platform</th>
+                    <th>Username</th>
+                    <th>Platform</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="account in accounts">
-                    <th scope="row">{{ account.name }}</th>
+                    <router-link :to="{ name: 'account', params: { id: account.id } }">
+                        <th>{{ account.name }}</th>
+                    </router-link>
                     <td>PC</td>
                 </tr>
             </tbody>
@@ -22,7 +24,7 @@
 import axios from 'axios'
 
     export default {
-        name: 'Account',
+        name: 'Accounts',
         data () {
             return {
                 accounts: []

@@ -26,6 +26,12 @@ export default new Router({
       name: 'accounts',
       // route level code-splitting
       component: () => import(/* webpackChunkName: "about" */ './views/Accounts.vue')
+    },
+    {
+      path: '/account/:id',
+      name: 'account',
+      // route level code-splitting
+      component: () => import(/* webpackChunkName: "about" */ './views/Account.vue')
     }
   ]
 })
