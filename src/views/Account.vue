@@ -22,7 +22,7 @@ import axios from 'axios'
             axios  
             .get('http://localhost:8080/JEA6KillerAppV2/rest/account/' + this.id, {
                 })
-            .then(response => (this.account = response.data));
+            .then(response => (this.account = response.data.result));
         }
     }
 </script>

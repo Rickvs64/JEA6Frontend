@@ -13,7 +13,7 @@
                     <router-link :to="{ name: 'account', params: { id: account.id } }">
                         <th>{{ account.name }}</th>
                     </router-link>
-                    <td>PC</td>
+                    <td>{{ account.platform }}</td>
                 </tr>
             </tbody>
         </table>
@@ -34,7 +34,7 @@ import axios from 'axios'
             axios  
             .get('http://localhost:8080/JEA6KillerAppV2/rest/account/', {
                 })
-            .then(response => (this.accounts = response.data))
+            .then(response => (this.accounts = response.data.result))
         }
     }
 </script>
