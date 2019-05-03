@@ -9,6 +9,7 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- eslint-disable-next-line -->
                 <tr v-for="account in accounts">
                     <router-link :to="{ name: 'account', params: { id: account.id } }">
                         <th>{{ account.name }}</th>

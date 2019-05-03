@@ -50,6 +50,12 @@ export default new Router({
       name: 'gamemode',
       // route level code-splitting
       component: () => import(/* webpackChunkName: "gamemode" */ './views/Gamemode.vue')
+    },
+    {
+      path: '/match/:id',
+      name: 'match',
+      // route level code-splitting
+      component: () => import(/* webpackChunkName: "match" */ './views/Match.vue')
     }
   ]
 })
