@@ -25,25 +25,31 @@ export default new Router({
       path: '/accounts',
       name: 'accounts',
       // route level code-splitting
-      component: () => import(/* webpackChunkName: "about" */ './views/Accounts.vue')
+      component: () => import(/* webpackChunkName: "accounts" */ './views/Accounts.vue')
     },
     {
       path: '/account/:id',
       name: 'account',
       // route level code-splitting
-      component: () => import(/* webpackChunkName: "about" */ './views/Account.vue')
+      component: () => import(/* webpackChunkName: "account" */ './views/Account.vue')
     },
     {
       path: '/heroes',
       name: 'heroes',
       // route level code-splitting
-      component: () => import(/* webpackChunkName: "about" */ './views/Heroes.vue')
+      component: () => import(/* webpackChunkName: "heroes" */ './views/Heroes.vue')
     },
     {
       path: '/hero/:id',
       name: 'hero',
       // route level code-splitting
-      component: () => import(/* webpackChunkName: "about" */ './views/Hero.vue')
+      component: () => import(/* webpackChunkName: "hero" */ './views/Hero.vue')
+    },
+    {
+      path: '/gamemode/:id',
+      name: 'gamemode',
+      // route level code-splitting
+      component: () => import(/* webpackChunkName: "gamemode" */ './views/Gamemode.vue')
     }
   ]
 })
