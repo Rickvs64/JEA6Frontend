@@ -19,10 +19,14 @@ import axios from 'axios'
         mounted () {
             this.id = this.$route.params.id;
             
-            axios  
-            .get('http://localhost:8080/JEA6KillerAppV2/rest/account/' + this.id, {
-                })
-            .then(response => (this.account = response.data.result));
+            this.getAccount();
+        },
+        methods: {
+            getAccount() {
+                 axios.get('http://localhost:8080/JEA6KillerAppV2/rest/account/' + this.id).then((response) => {
+                    this.account = response.data.result;
+                });
+            }
         }
     }
 </script>

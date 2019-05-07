@@ -1,7 +1,12 @@
 <template>
     <div class="main">
         <h1 v-if="this.match">Match ID: {{ match.id }}</h1>
-        <h2 v-if="this.gamemode">Mode: {{ gamemode.name }} </h2>
+        <h2 v-if="this.gamemode">Mode: 
+            <router-link :to="{ name: 'gamemode', params: { id: gamemode.id } }">
+                {{ gamemode.name }}
+            </router-link>
+        </h2>
+         
         
         <p v-if="this.match">{{ match.actualDate }}</p>
         <p>(Info about match)</p>
