@@ -22,7 +22,8 @@ import axios from 'axios'
             return {
                 id: 0,
                 match: null,
-                gamemode: null
+                gamemode: null,
+                participants: []
             }
         },
         mounted () {
@@ -36,13 +37,19 @@ import axios from 'axios'
                 axios.get('http://localhost:8080/JEA6KillerAppV2/rest/match/' + this.id).then((response) => {
                     this.match = response.data;
                     
-                    // Now that this async Axios call is completed we can fetch the gamemode (which requires non-null match data)
+                    // Now that this async Axios call is completed we can fetch the gamemode and participants (which require non-null match data)
                     this.getGamemode(response.data.gamemodeId);
+                    this.getParticipants();
                 });
             },
             getGamemode(gamemodeId) {
                 axios.get('http://localhost:8080/JEA6KillerAppV2/rest/gamemode/' + gamemodeId).then((response) => {
                     this.gamemode = response.data;
+                });
+            },
+            getParticipants() {
+                axios.get('http://localhost:8080/JEA6KillerAppV2/rest/participant/bymatch/' + this.id).then((response) => {
+                    this.participants = response.data;
                 });
             }
         }
