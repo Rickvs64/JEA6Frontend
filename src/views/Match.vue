@@ -9,7 +9,31 @@
          
         
         <p v-if="this.match">{{ match.actualDate }}</p>
-        <p>(Info about match)</p>
+        <br />
+        <h2>Participants:</h2>
+
+        <h3>Team A:</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Hero</th>
+                    <th>Kills</th>
+                    <th>Deaths</th>
+                    <th>Assists</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- eslint-disable-next-line -->
+                <tr v-for="participant in participants">
+                    <td>Test: {{ getUsername(participant.accountId) }}</td>
+                    <td>Hero</td>
+                    <td>Kills</td>
+                    <td>Deaths</td>
+                    <td>Assists</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 
@@ -50,6 +74,11 @@ import axios from 'axios'
             getParticipants() {
                 axios.get('http://localhost:8080/JEA6KillerAppV2/rest/participant/bymatch/' + this.id).then((response) => {
                     this.participants = response.data;
+                });
+            },
+            getUsername(accountId) {
+                axios.get('http://localhost:8080/JEA6KillerAppV2/rest/account/' + accountId).then((response) => {
+                    return response.data.result.name;
                 });
             }
         }
