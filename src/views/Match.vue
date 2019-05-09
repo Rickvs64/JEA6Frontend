@@ -10,9 +10,8 @@
         
         <p v-if="this.match">{{ match.actualDate }}</p>
         <br />
+        
         <h2>Participants:</h2>
-
-        <h3>Team A:</h3>
         <table class="table">
             <thead>
                 <tr>
@@ -25,12 +24,20 @@
             </thead>
             <tbody>
                 <!-- eslint-disable-next-line -->
-                <tr v-for="participant in participants">
-                    <td>Test: {{ getUsername(participant.accountId) }}</td>
-                    <td>Hero</td>
-                    <td>Kills</td>
-                    <td>Deaths</td>
-                    <td>Assists</td>
+                <tr v-for="(participant, index) in participants">
+                    <td>
+                        <router-link :to="{ name: 'account', params: { id: accounts[index].id } }">
+                            {{ accounts[index].name }}
+                        </router-link>
+                    </td>
+                    <td>
+                        <router-link :to="{ name: 'hero', params: { id: heroes[index].id } }">
+                            {{ heroes[index].name }}
+                        </router-link>
+                    </td>
+                    <td>{{ participant.kills }}</td>
+                    <td>{{ participant.deaths }}</td>
+                    <td>{{ participant.assists }}</td>
                 </tr>
             </tbody>
         </table>
@@ -47,7 +54,9 @@ import axios from 'axios'
                 id: 0,
                 match: null,
                 gamemode: null,
-                participants: []
+                participants: [],
+                accounts: [],
+                heroes: []
             }
         },
         mounted () {
@@ -73,12 +82,11 @@ import axios from 'axios'
             },
             getParticipants() {
                 axios.get('http://localhost:8080/JEA6KillerAppV2/rest/participant/bymatch/' + this.id).then((response) => {
-                    this.participants = response.data;
-                });
-            },
-            getUsername(accountId) {
-                axios.get('http://localhost:8080/JEA6KillerAppV2/rest/account/' + accountId).then((response) => {
-                    return response.data.result.name;
+                    this.participants = response.data.result_participants;
+                    this.accounts = response.data.result_accounts;
+                    this.heroes = response.data.result_heroes;
+                    /* eslint-disable-next-line */
+                    console.log(response.data.result_participants);
                 });
             }
         }
